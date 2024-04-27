@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="mt-5 mx-5 p-10 text-center">
+        <h1 class="ml-6 pt-1 text-base text-gray-800 leading-normal">Lista de Posts</h1>
+        {% if textos %}
+            {% for texto in textos %}
+                <div class="ml-6 pt-1">
+                    <p>{{ texto.contenido }}</p>
+                    <h2 class="text-4xl">{{ .TituloPost }}</h2>
+                    <p class="text-3xl">{{ post.Contenido }}</p>  
+                    <p class="text-1xl">Publicado el: {{ post.FechaPost }}</p>
+                    <a href="{% url 'add_comment_with_texto' texto.id %}">Agregar comentario</a>
+                    <a href="{% url 'view_comments' texto.id %}">Ver comentarios</a>
+                </div>
+                <hr>
+            {% endfor %}
+        {% else %}
+            <p>No hay textos disponibles.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
